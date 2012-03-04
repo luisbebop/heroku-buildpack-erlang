@@ -19,6 +19,7 @@
 
 start_link() ->
 	Port = list_to_integer(os:getenv("PORT")),
+	io:format("start server on port ~p~n", [Port]),
 	Pid = spawn_link(fun() ->
 		{ok, Listen} = gen_tcp:listen(Port, [binary, {active, false}]),
 		spawn(fun() -> acceptor(Listen) end),
